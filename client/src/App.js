@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import Chat from './Chat'
 import { Button, Input, Card, CardHeader, Flex, Divider, Container  } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { Input } from '@chakra-ui/react'
 const socket = io.connect('http://localhost:3001')
 
@@ -16,6 +16,14 @@ function App() {
       setShowChat(true)
     }
   }
+
+
+  useEffect(() => {
+    const socket = io.connect('http://localhost:3001');
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   
   return (
