@@ -9,9 +9,10 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'https://chaty.com',
+        origin: ['https://chaty.com', 'http://localhost:3000'],
         methods: ['POST', 'GET'],
-    }
+    },
+    transports: ['websocket', 'polling'],
 })
 
 io.on('connection', (socket) => {
